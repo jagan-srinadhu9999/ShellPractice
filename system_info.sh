@@ -1,3 +1,4 @@
+#!/bib/bash
 Hostname = $(hostname)
 Date = $(date)
 uptime = $(uptime)
