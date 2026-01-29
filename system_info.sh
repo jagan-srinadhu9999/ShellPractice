@@ -1,7 +1,7 @@
 Hostname = $(hostname)
-Dtae = $(date)
+Date = $(date)
 uptime = $(uptime)
 
-echo "Hostname: $Hostname"
-echo "Date and Time: $Dtae"
-echo "Uptime: $uptime"
+echo "Server is : $Hostname"
+echo "Date is: $Date"
+echo "Uptime is: $uptime"
