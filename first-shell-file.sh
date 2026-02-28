@@ -3,28 +3,22 @@
 echo "Hello, World!"
 
 USER_ID=$(id -u)
-Current_User=$(whoami)
-Current_Hostname=$(hostname)
-echo "Your user ID is: $USER_ID"
+CURRENT_USER=$(whoami)
+CURRENT_HOSTNAME=$(hostname)
 
-if [ $USER_ID -eq 0 ]; then
-    echo "You are running this script as the root user."
+echo "Your user ID is: $USER_ID"
+echo "Current user: $CURRENT_USER"
+echo "Hostname: $CURRENT_HOSTNAME"
+
+# Check if root
+if [ "$USER_ID" -eq 0 ]; then
+    echo "You are running this script as root user."
     dnf install nginx -y
     echo "nginx installed successfully."
-elif [ $USER_ID -ne 0 ]; then
-     sudo su -
-     dnf install nginx -y
-    echo "You are running this script as a regular user."
 else
-    echo "You are running this script as a regular user."
+    echo "You are not root. Please run this script as root."
+    exit 1
 fi
 
-Time = $(date)
-echo "Current date and time: $Time"
-
-# if[$Current_User -ne 0]; then
-#     echo "You are not root user, installing nginx..."
-#     echo "check user name $Current_User"
-#     sudo su -
-# dnf install nginx -y
-# fi
+TIME=$(date)
+echo "Current date and time: $TIME"
