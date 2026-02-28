@@ -62,7 +62,7 @@ echo "NGINX uninstallation complete."
 
 }
 
-./_uninstall_nginx
+_uninstall_nginx
 
 TIME=$(date)
 echo "Current date and time: $TIME"
