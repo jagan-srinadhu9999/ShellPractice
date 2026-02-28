@@ -7,11 +7,11 @@ Current_User=$(whoami)
 Current_Hostname=$(hostname)
 echo "Your user ID is: $USER_ID"
 
-if [ USER_ID -eq 0 ]; then
+if [ $USER_ID -eq 0 ]; then
     echo "You are running this script as the root user."
     dnf install nginx -y
     echo "nginx installed successfully."
-elif [ USER_ID -ne 0 ]; then
+elif [ $USER_ID -ne 0 ]; then
      sudo su -
      dnf install nginx -y
     echo "You are running this script as a regular user."
