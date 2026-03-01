@@ -32,7 +32,7 @@ check_root() {
 mkdir -p $LOGS_FOLDER
 
 check_root
-dnf install nginx -y
+dnf install nginx -y >> $LOGS_FILE 2>&1
     echo -e "${G}nginx installed successfully.${N} " | tee -a $LOGS_FILE
     nginx -version
 
