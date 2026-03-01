@@ -8,6 +8,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+NUMBER=$1
 
 start_time=$(date +%s)
 echo -e "${G}Script execution started at: $(date)${N}"
@@ -31,3 +32,12 @@ echo "PID of this script: $$"
 sleep 100 &
 echo "PID of recently executed background process: $!"
 echo "All args passed to script: $*"
+
+if [ "$NUMBER" -gt 10 ]; then
+    echo "Number is greater than 10"
+elif [ "$NUMBER" -eq 10 ]; then
+    echo "Number is equal to 10"
+else
+    echo "Number is less than 10"
+    echo "Number is less than or equal to 10"
+fi
