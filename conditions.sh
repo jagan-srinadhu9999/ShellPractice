@@ -1,14 +1,19 @@
 #!/bin/bash
 
+R='\033[0;31m'         # Red color code
+G='\033[0;32m'       # Green color code
+Y='\033[0;33m'      # Yellow color code
+NC='\033[0m'     # No Color code
+
 start_time=$(date +%s)
-echo "Script execution started at: $(date)"
+echo "${G}Script execution started at: $(date)${NC}"
 
 sleep 10
 
 end_time=$(date +%s)
 execution_time=$((end_time - start_time))
-echo "Script execution completed at: $(date)"
-echo "Total execution time: $execution_time seconds"
+echo "${G}Script execution completed at: $(date)${NC}"
+echo "${Y}Total execution time: $execution_time seconds${NC}"
 
 #### Special Variables ####
 echo "All args passed to script: $@"
