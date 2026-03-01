@@ -5,6 +5,10 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+LOGS_FOLDER="/var/log/shell-script"
+LOGS_FILE="/var/log/shell-script/$0.log"
+
+
 echo -e "${G}Hello, World!${N}"
 
 USER_ID=$(id -u)
@@ -16,17 +20,33 @@ echo "Current user: $CURRENT_USER"
 echo "Hostname: $CURRENT_HOSTNAME"
 
 # Check if root
-if [ "$USER_ID" -eq 0 ]; then
+check_root() {
+    if [ "$USER_ID" -eq 0 ]; then
+        echo -e "${G}You are running this script as root user.${N}" | tee -a $LOGS_FILE
+    else
+        echo -e "${R}You are not root. Please run this script as root.${N}" | tee -a $LOGS_FILE
+        exit 1
+    fi
+}
 
-    printf "${G} You are running this script as root user.${N} "
-    dnf install nginx -y
-    echo -e "${G}nginx installed successfully.${N}"
+mkdir -p $LOGS_FOLDER
+
+check_root
+dnf install nginx -y
+    echo -e "${G}nginx installed successfully.${N} " | tee -a $LOGS_FILE
     nginx -version
 
-else
-    echo -e "${R}You are not root. Please run this script as root.${N}"
-    exit 1
-fi
+# if [ "$USER_ID" -eq 0 ]; then
+
+#     printf "${G} You are running this script as root user.${N} "
+#     dnf install nginx -y
+#     echo -e "${G}nginx installed successfully.${N}"
+#     nginx -version
+
+# else
+#     echo -e "${R}You are not root. Please run this script as root.${N}"
+#     exit 1
+# fi
 
 TIME=$(date)
 echo "Current date and time: $TIME"
@@ -65,7 +85,7 @@ sudo rm -rf /usr/share/nginx
 echo "Verification: Checking for remaining NGINX packages..."
 dpkg -l | grep -i nginx
 
-echo -e "${G}NGINX uninstallation complete.${N}"
+echo -e "${G}NGINX uninstallation complete.${N}" | tee -a $LOGS_FILE
 
 }
 
