@@ -10,14 +10,14 @@ Y="\e[33m"
 N="\e[0m"
 
 start_time=$(date +%s)
-echo "${G}Script execution started at: $(date)${N}"
+echo -e "${G}Script execution started at: $(date)${N}"
 
 sleep 10
 
 end_time=$(date +%s)
 execution_time=$((end_time - start_time))
-echo "${G} Script execution completed at: $(date)${N}"
-echo "${Y}Total execution time: $execution_time seconds${N}"
+echo -e "${G} Script execution completed at: $(date)${N}"
+echo -e "${Y}Total execution time: $execution_time seconds${N}"
 
 #### Special Variables ####
 echo "All args passed to script: $@"
