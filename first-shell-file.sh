@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "Hello, World!"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
+echo -e "${G}Hello, World!${N}"
 
 USER_ID=$(id -u)
 CURRENT_USER=$(whoami)
@@ -12,12 +17,14 @@ echo "Hostname: $CURRENT_HOSTNAME"
 
 # Check if root
 if [ "$USER_ID" -eq 0 ]; then
-    echo "You are running this script as root user."
+
+    printf "${G} You are running this script as root user.${N} "
     dnf install nginx -y
-    echo "nginx installed successfully."
+    echo -e "${G}nginx installed successfully.${N}"
     nginx -version
+
 else
-    echo "You are not root. Please run this script as root."
+    echo -e "${R}You are not root. Please run this script as root.${N}"
     exit 1
 fi
 
@@ -58,7 +65,7 @@ sudo rm -rf /usr/share/nginx
 echo "Verification: Checking for remaining NGINX packages..."
 dpkg -l | grep -i nginx
 
-echo "NGINX uninstallation complete."
+echo -e "${G}NGINX uninstallation complete.${N}"
 
 }
 
